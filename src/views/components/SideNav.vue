@@ -116,6 +116,7 @@ const logout = () => {
       console.log(response)
       if (response.message === "success") {
         localStorage.removeItem("product-token");
+        sessionStorage.removeItem("product-token");
         router.push("/");
       }
     })

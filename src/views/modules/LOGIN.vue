@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-card class="card">
-      <p style="text-align: center">Login</p>
+      <p style="text-align: center">LOGIN</p>
       <v-form ref="myForm" class="form" @submit.prevent="login">
         <v-text-field v-model="username" :rules="rules.required" outlined dense label="Username"></v-text-field>
         <v-text-field v-model="password" type="password" :rules="rules.required" outlined dense
@@ -59,7 +59,11 @@ export default {
         };
         this.$store.dispatch("LOGIN", payload).then((response) => {
           if (response.message === "Login Successfully!") {
-            localStorage.setItem("product-token", response.token);
+            if (this.rememberMe) {
+              localStorage.setItem("product-token", response.token);
+            } else {
+              sessionStorage.setItem("product-token", response.token);
+            }
             this.$router.push("SideNav");
           } else {
             localStorage.removeItem("product-token");
