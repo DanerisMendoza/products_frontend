@@ -3,7 +3,8 @@
     <v-navigation-drawer app color="#343a40" v-model="drawer" :width="drawerWidth">
       <v-list dense>
         <!-- Loop through links and create router links -->
-        <router-link v-if="USER_DETAILS.user_role === 0" v-for="link in links" :to="link.to" :key="link.to" class="sidenav-link">
+        <router-link v-if="USER_DETAILS.user_role === 0" v-for="link in links" :to="link.to" :key="link.to"
+          class="sidenav-link">
           <v-list-item link :class="{ 'highlighted-link': isLinkActive(link.to) }" class="pl-8">
             <v-list>
               {{ link.text }}
@@ -80,6 +81,9 @@ const store = useStore();
 const router = useRouter();
 const USER_DETAILS = computed(() => store.getters.USER_DETAILS);
 
+
+// console.log(localStorage.getItem("product-token"));
+// console.log(sessionStorage.getItem("product-token"));
 
 const route = useRoute();
 
