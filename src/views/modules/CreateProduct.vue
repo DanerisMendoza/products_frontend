@@ -1,32 +1,49 @@
 <template>
     <div class="container">
         <v-container class="mt-12">
-            <v-form ref="myForm" @submit.prevent>
-                <v-text-field label="name" v-model="form.name"></v-text-field>
-                <v-autocomplete v-model="form.category" label="Category" :rules="rules.required"
-                    :items="['best seller', 'budget product', 'new arrival']"></v-autocomplete>
-                <v-textarea v-model="form.description" :rules="rules.required" label="Description"></v-textarea>
-                <v-file-input @change="handleFileChange()" style="display: none" ref="fileInput" v-model="pictureData"
-                    truncate-length="15" outlined multiple accept="image/*" color="orange lighten-2"></v-file-input>
-            </v-form>
 
-            <v-card-actions>
-                <v-container>
-                    <v-row>
-                        <v-btn @click="openFileInput" elevation="2" color="primary">
+            <v-card>
+                <v-card-text>
+
+
+                    <v-form ref="myForm" @submit.prevent>
+                        <v-text-field label="name" v-model="form.name"></v-text-field>
+                        <v-autocomplete v-model="form.category" label="Category" :rules="rules.required"
+                            :items="['best seller', 'budget product', 'new arrival']"></v-autocomplete>
+                        <v-textarea v-model="form.description" :rules="rules.required" label="Description"></v-textarea>
+                        <v-file-input @change="handleFileChange()" style="display: none" ref="fileInput"
+                            v-model="pictureData" truncate-length="15" outlined multiple accept="image/*"
+                            color="orange lighten-2"></v-file-input>
+
+                        <v-menu :close-on-content-click="false">
+                            <v-date-picker color="primary"
+                                @update:modelValue="(newValue) => { form.date_and_time = formatDate(newValue) }"></v-date-picker>
+                            <template v-slot:activator="{ props }" transition="scale-transition" offset-y>
+                                <v-text-field v-model="form.date_and_time" clearable label="Date" readonly v-bind="props"
+                                    variant="outlined">
+                                </v-text-field>
+                            </template>
+                        </v-menu>
+                        
+                        
+                    </v-form>
+
+
+                    <div style="display: flex; gap: 0.5rem">
+                        <v-btn @click="openFileInput" elevation="2" color="green">
                             <v-icon color="primary">mdi-image-plus</v-icon>Upload
                         </v-btn>
                         <v-btn v-if="pictures.length > 0" @click="openModal" elevation="2" outlined color="warning">
                             <v-icon>mdi-image-multiple</v-icon>View
                         </v-btn>
-                        <v-btn dark :loading="loadSubmit" elevation="2" @click="submit">
+                        <v-btn :loading="loadSubmit" elevation="2" @click="submit" color="red">
                             Submit
                         </v-btn>
-                    </v-row>
-                    <v-row>
-                    </v-row>
-                </v-container>
-            </v-card-actions>
+                    </div>
+
+
+                </v-card-text>
+            </v-card>
 
             <v-dialog v-model="showModal" max-width="800px">
                 <v-card>
@@ -72,6 +89,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import moment from "moment";
 
 export default {
     data: () => ({
@@ -85,6 +103,7 @@ export default {
             name: null,
             category: null,
             description: null,
+            date_and_time: null,
         },
         pictureFile: [],
         pictureData: [],
@@ -178,6 +197,7 @@ export default {
                             text: "Form submitted successfully!",
                             icon: "success",
                         });
+                        this.$router.push("/SideNav/ListProducts");
                     } else {
                         this.$swal.fire({
                             title: "Validation Error",
@@ -217,6 +237,9 @@ export default {
         removeImage(index) {
             this.pictures.splice(index, 1);
             this.pictureFile.splice(index, 1);
+        },
+        formatDate(date) {
+            return moment(date).format("MMMM D, YYYY");
         },
 
     },
