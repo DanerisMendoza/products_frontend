@@ -31,7 +31,7 @@
 
                     <div style="display: flex; gap: 0.5rem">
                         <v-btn @click="openFileInput" elevation="2" color="green">
-                            <v-icon color="primary">mdi-image-plus</v-icon>Upload
+                            <v-icon >mdi-image-plus</v-icon>Upload
                         </v-btn>
                         <v-btn v-if="pictures.length > 0" @click="openModal" elevation="2" outlined color="warning">
                             <v-icon>mdi-image-multiple</v-icon>View

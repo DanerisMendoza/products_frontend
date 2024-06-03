@@ -54,14 +54,14 @@
 
     </v-navigation-drawer>
 
-    <v-main>
+    <v-main style="background: #f4f6f9;">
       <v-container>
         <router-view></router-view>
       </v-container>
     </v-main>
 
-    <v-app-bar app elevation="0" color="transparent" :style="{ marginLeft: drawer ? drawerWidth : '0' }">
-      <v-app-bar-nav-icon @click.stop.prevent="drawer = !drawer" color="#144B14" class="ml-7"></v-app-bar-nav-icon>
+    <v-app-bar app elevation="0" color="#ffffff" :style="{ marginLeft: drawer ? drawerWidth : '0' }">
+      <v-app-bar-nav-icon @click.stop.prevent="drawer = !drawer" color="#7e7e7e"></v-app-bar-nav-icon>
     </v-app-bar>
   </v-app>
 </template>
