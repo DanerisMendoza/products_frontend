@@ -82,8 +82,8 @@ const router = useRouter();
 const USER_DETAILS = computed(() => store.getters.USER_DETAILS);
 
 
-// console.log(localStorage.getItem("product-token"));
-// console.log(sessionStorage.getItem("product-token"));
+console.log(localStorage.getItem("product-token"));
+console.log(sessionStorage.getItem("product-token"));
 
 const route = useRoute();
 
