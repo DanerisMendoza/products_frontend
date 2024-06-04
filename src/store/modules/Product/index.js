@@ -34,6 +34,26 @@ export default {
           });
         })
       },
+ 
+      UpdateProduct({ commit }, payload) {
+        return new Promise((resolve, reject) => {
+          api.post('api/UpdateProduct', payload.params, payload.config).then((response) => {
+            resolve(response.data)
+          }).catch((error) => {
+            reject(error)
+          });
+        })
+      },
+ 
+    DeleteProduct({ commit }, payload) {
+        return new Promise((resolve, reject) => {
+          api.delete('api/DeleteProduct', payload).then((response) => {
+            resolve(response.data)
+          }).catch((error) => {
+            reject(error)
+          });
+        })
+      },
 
   }
 }

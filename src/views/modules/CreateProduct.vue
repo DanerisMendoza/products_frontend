@@ -45,7 +45,7 @@
                 </v-card-text>
             </v-card>
 
-            <v-dialog v-model="showModal" max-width="800px">
+            <v-dialog v-model="showModal" max-width="800px" persistent>
                 <v-card>
                     <v-card-title>
                         <span class="headline">Pictures</span>
