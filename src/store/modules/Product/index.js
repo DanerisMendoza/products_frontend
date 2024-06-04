@@ -14,9 +14,9 @@ export default {
   },
 
   actions: {
-    GetProducts({ commit }) {
+    GetProducts({ commit }, payload) {
       return new Promise((resolve, reject) => {
-        api.get('api/GetProducts').then((response) => {
+        api.get('api/GetProducts',payload).then((response) => {
           commit('PRODUCTS', response.data)
           resolve(response.data)
         }).catch((error) => {
