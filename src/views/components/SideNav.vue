@@ -82,8 +82,8 @@ const router = useRouter();
 const USER_DETAILS = computed(() => store.getters.USER_DETAILS);
 
 
-console.log(localStorage.getItem("product-token"));
-console.log(sessionStorage.getItem("product-token"));
+// console.log(localStorage.getItem("product-token"));
+// console.log(sessionStorage.getItem("product-token"));
 
 const route = useRoute();
 
@@ -117,7 +117,7 @@ const logout = () => {
   store
     .dispatch("Logout")
     .then((response) => {
-      console.log(response)
+      // console.log(response)
       if (response.message === "success") {
         localStorage.removeItem("product-token");
         sessionStorage.removeItem("product-token");
@@ -130,7 +130,7 @@ const logout = () => {
 };
 
 store.dispatch("GetUserDetails").then(() => {
-  console.log(USER_DETAILS.value.user_role);
+  // console.log(USER_DETAILS.value.user_role);
 });
 
 </script>
