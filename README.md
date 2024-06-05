@@ -1,3 +1,23 @@
+to run locally 
+
+clone the ff:
+    backend: https://github.com/DanerisMendoza/products_backend.git
+    frontend: https://github.com/DanerisMendoza/products_frontend.git
+
+backend:
+    composer install
+    create .env and copy and paste env sample to your created .env
+    php artisan optimize
+    php artisan key:generate
+    php artisan migrate
+    phh artisan db:seed
+    php artisan passport:install
+
+frontend:
+    npm install
+    npm run dev
+
+
 # Vuetify (Default)
 
 This is the official scaffolding tool for Vuetify, designed to give you a head start in building your new Vuetify application. It sets up a base template with all the necessary configurations and standard directory structure, enabling you to begin development without the hassle of setting up the project from scratch.
