@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <v-container class="mt-12">
+   
 
             <v-card>
-                <v-card-text>
-
+                <v-card-text  style="padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem;">
+                    <h1 style="text-align: center">Create Product</h1>
 
                     <v-form ref="myForm" @submit.prevent>
                         <v-text-field label="name" v-model="form.name"></v-text-field>
@@ -83,7 +83,7 @@
                     </v-card-text>
                 </v-card>
             </v-dialog>
-        </v-container>
+
     </div>
 </template>
 

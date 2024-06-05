@@ -1,104 +1,64 @@
 <template>
-  <v-app>
-    <div :style="{ display: 'flex', flexDirection: 'row' }">
-      <h1>USERS</h1>
-      <div :style="{ flex: '1' }"></div>
-      <v-btn @click="setDialog(true)">Add New User</v-btn>
-    </div>
 
-    <v-dialog v-model="isDialogOpen" width="400">
-      <v-card>
-        <v-card-text class="pt-6">
-          <v-form ref="myForm" @submit.prevent="submit">
-            <v-text-field
-              v-model="form.first_name"
-              :rules="rules.required"
-              outlined
-              dense
-              label="First Name"
-            ></v-text-field>
-            <v-text-field
-              v-model="form.middle_name"
-              :rules="rules.required"
-              outlined
-              dense
-              label="Middle Name"
-            ></v-text-field>
-            <v-text-field
-              v-model="form.last_name"
-              :rules="rules.required"
-              outlined
-              dense
-              label="Last Name"
-            ></v-text-field>
-            <v-text-field
-              v-model="form.username"
-              :rules="rules.required"
-              outlined
-              dense
-              label="Username"
-            ></v-text-field>
-            <v-text-field
-              v-model="form.email"
-              :rules="rules.required"
-              outlined
-              dense
-              label="Email"
-            ></v-text-field>
-            <v-text-field
-              v-model="form.password"
-              type="password"
-              :rules="rules.required"
-              outlined
-              dense
-              label="Password"
-            ></v-text-field>
-            <v-autocomplete filled dense
-              :rules="rules.required"
-              v-model="form.gender"
-              label="Gender"
-              :items="['Male', 'Female', 'Others']"
-            ></v-autocomplete>
-          </v-form>
-          <div :style="{ display: 'flex', flexDirection: 'column' }">
-            <div
-              :style="{ display: 'flex', alignSelf: 'center', gap: '0.5rem' }"
-            >
-              <v-btn @click="setDialog(false)">Close</v-btn>
-              <v-btn @click="submit">Submit</v-btn>
-            </div>
-          </div>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
+  <div>
+    <v-card elevated>
+      <v-card-text  style="padding: 2rem; display: flex; flex-direction: column; gap: 1rem;">
+        <h1 style="text-align: center">USERS</h1>
+        <v-btn style="align-self: end;" @click="setDialog(true)">Add New User</v-btn>
 
-    <v-data-table
-      :headers="headers"
-      :items="USERS"
-      :items-per-page="5"
-      class="elevation-1"
-    >
-      <template v-slot:item="{ item }">
-        <tr>
-          <td>{{ item.id }}</td>
-          <td>{{ item.first_name }}</td>
-          <td>{{ item.middle_name }}</td>
-          <td>{{ item.last_name }}</td>
-          <td>{{ item.username }}</td>
-          <td>{{ item.email }}</td>
-          <td>{{ item.user_role }}</td>
-          <td>
-            <!-- <v-icon @click="viewItem(item)" class="mr-2">mdi-eye</v-icon> -->
-            <!-- <v-icon @click="editItem(item)" color="orange">mdi-pencil</v-icon> -->
-            <v-icon @click="deleteItem(item)">mdi-delete</v-icon>
-          </td>
-        </tr>
-      </template>
-    </v-data-table>
-  </v-app>
+        <v-dialog v-model="isDialogOpen" width="400">
+          <v-card>
+            <v-card-text class="pt-6">
+              <v-form ref="myForm" @submit.prevent="submit">
+                <v-text-field v-model="form.first_name" :rules="rules.required" outlined dense
+                  label="First Name"></v-text-field>
+                <v-text-field v-model="form.middle_name" :rules="rules.required" outlined dense
+                  label="Middle Name"></v-text-field>
+                <v-text-field v-model="form.last_name" :rules="rules.required" outlined dense
+                  label="Last Name"></v-text-field>
+                <v-text-field v-model="form.username" :rules="rules.required" outlined dense
+                  label="Username"></v-text-field>
+                <v-text-field v-model="form.email" :rules="rules.required" outlined dense label="Email"></v-text-field>
+                <v-text-field v-model="form.password" type="password" :rules="rules.required" outlined dense
+                  label="Password"></v-text-field>
+                <v-autocomplete filled dense :rules="rules.required" v-model="form.gender" label="Gender"
+                  :items="['Male', 'Female', 'Others']"></v-autocomplete>
+              </v-form>
+              <div :style="{ display: 'flex', flexDirection: 'column' }">
+                <div :style="{ display: 'flex', alignSelf: 'center', gap: '0.5rem' }">
+                  <v-btn @click="setDialog(false)">Close</v-btn>
+                  <v-btn @click="submit">Submit</v-btn>
+                </div>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
+
+        <v-data-table :headers="headers" :items="USERS" :items-per-page="5" class="elevation-1">
+          <template v-slot:item="{ item }">
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.first_name }}</td>
+              <td>{{ item.middle_name }}</td>
+              <td>{{ item.last_name }}</td>
+              <td>{{ item.username }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.user_role }}</td>
+              <td>
+                <!-- <v-icon @click="viewItem(item)" class="mr-2">mdi-eye</v-icon> -->
+                <!-- <v-icon @click="editItem(item)" color="orange">mdi-pencil</v-icon> -->
+                <v-icon @click="deleteItem(item)">mdi-delete</v-icon>
+              </td>
+            </tr>
+          </template>
+        </v-data-table>
+      </v-card-text>
+    </v-card>
+  </div>
+
 </template>
-  
-  <script>
+
+<script>
 import { mapGetters } from "vuex";
 import moment from "moment";
 
@@ -123,7 +83,7 @@ export default {
         { title: "User_role", sortable: false },
         { title: "Actions", value: "actions", sortable: false },
       ],
-      
+
       rules: {
         required: [
           (v) => !!v || "Field is required",
@@ -154,14 +114,14 @@ export default {
     ...mapGetters(["USERS", "", ""]),
   },
   methods: {
-    resetForm(){
-        this.form.first_name = null
-        this.form.middle_name = null
-        this.form.last_name = null
-        this.form.username = null
-        this.form.email = null
-        this.form.gender = null
-        this.$refs.myForm.reset();
+    resetForm() {
+      this.form.first_name = null
+      this.form.middle_name = null
+      this.form.last_name = null
+      this.form.username = null
+      this.form.email = null
+      this.form.gender = null
+      this.$refs.myForm.reset();
     },
     submit() {
       if (this.$refs.myForm.validate()) {
@@ -203,8 +163,7 @@ export default {
   },
 };
 </script>
-  
-  <style scoped>
+
+<style scoped>
 /* Add your styling if needed */
 </style>
-  
