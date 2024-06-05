@@ -1,16 +1,17 @@
 to run locally 
  ## clone the ff:
-    -backend: https://github.com/DanerisMendoza/products_backend.git
-    -frontend: https://github.com/DanerisMendoza/products_frontend.git
+    backend: https://github.com/DanerisMendoza/products_backend.git
+    frontend: https://github.com/DanerisMendoza/products_frontend.git
 
 ## backend:
     composer install
     create .env and copy and paste env sample to your created .env
-    php artisan optimize
+    php artisan cache:clear
     php artisan key:generate
     php artisan migrate
     phh artisan db:seed
     php artisan passport:install
+    php artisan optimize
 
 ## frontend:
     npm install
