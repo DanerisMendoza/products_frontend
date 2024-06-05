@@ -48,11 +48,11 @@
                 </v-list>
                 <div style="display: flex; flex-direction: column; ">
                     <div style="display: flex;  align-self: center; gap: 0.5rem">
-                        <v-pagination v-if="pagination_length>0" :key="perPage" v-model="page" :length="pagination_length" density="compact" style="margin-top: 0.2rem" @update:modelValue="(fetchTable)"></v-pagination>
-                        <div>
+                        <v-pagination v-if="pagination_length>0" v-model="page" :length="pagination_length" density="compact" style="margin-top: 0.2rem" @update:modelValue="(fetchTable)"></v-pagination>
+                        <!-- <div>
                             <v-select variant="solo" v-model="perPage" @update:modelValue="PerPageChange"
                                 :items="['5', '10', '15', '20', '30', '50']"       density="compact"></v-select>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </v-card-text>
@@ -339,7 +339,7 @@ export default {
                     if (response === "success") {
                         this.fetchTable()
                         this.clear()
-                        this.drawer = false
+                        this.EditModal = false
                         this.$swal.fire({
                             title: "Success!",
                             text: "Form submitted successfully!",
