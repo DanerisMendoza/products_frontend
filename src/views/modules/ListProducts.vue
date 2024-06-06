@@ -7,8 +7,8 @@
                 <h1 style="text-align: center; margin-bottom: 1.5rem">LIST OF PRODUCTS</h1>
                 <div style="display: flex; align-items: start; gap: 1%; ">
                     <v-btn @click="create" size="large" style="margin-top: 0.1rem;">Create</v-btn>
-                    <v-autocomplete v-model="category" label="Category" variant="outlined" density="comfortable" clearable
-                        :items="['best seller', 'budget product', 'new arrival']"
+                    <v-autocomplete v-model="category" label="Category" variant="outlined" density="comfortable"
+                        clearable :items="['best seller', 'budget product', 'new arrival']"
                         @update:modelValue="fetchTable"></v-autocomplete>
 
                     <v-text-field label="Search" variant="outlined" hide-details="auto" clearable density="comfortable"
@@ -21,7 +21,7 @@
                 </div>
 
 
-                <v-list lines="three">
+                <v-list lines="three" class="list">
                     <v-list-item v-for="(product, index) in PRODUCTS.data" :key="product.id">
                         <v-card variant="tonal">
                             <v-card-text>
@@ -190,7 +190,7 @@ export default {
     },
     computed: {
         ...mapGetters(["PRODUCTS", "", ""]),
-        pagination_length(){
+        pagination_length() {
             // console.log(this.total)
             // console.log(this.perPage)
             // console.log( Math.ceil(this.total / this.perPage))
@@ -199,7 +199,7 @@ export default {
         }
     },
     methods: {
-        PerPageChange(){
+        PerPageChange() {
             this.page = 1
             this.fetchTable()
         },
@@ -403,5 +403,18 @@ export default {
 <style scoped>
 .cursor:hover {
     cursor: pointer;
+}
+
+/* mobile */
+@media (max-width: 640px) {
+   
+}
+
+/* higer width than mobile */
+@media (min-width: 640px) {
+   .list{
+    display: grid;
+    grid-template-columns: 50% 50%;
+   }
 }
 </style>
