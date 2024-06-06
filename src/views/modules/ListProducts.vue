@@ -7,7 +7,7 @@
                 <h1 style="text-align: center; margin-bottom: 1.5rem">LIST OF PRODUCTS</h1>
                 <div style="display: flex; align-items: start; gap: 1%; ">
                     <v-btn @click="create" size="large" style="margin-top: 0.1rem;">Create</v-btn>
-                    <v-autocomplete v-model="category" label="Category" variant="outlined" density="comfortable"
+                    <v-autocomplete v-model="category" label="Category" variant="outlined" density="comfortable" clearable
                         :items="['best seller', 'budget product', 'new arrival']"
                         @update:modelValue="fetchTable"></v-autocomplete>
 
