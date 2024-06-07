@@ -61,7 +61,7 @@
         </v-card>
 
         <!-- edit modal -->
-        <v-dialog v-model="EditModal" max-width="80rem" persistent>
+        <v-dialog v-model="EditModal" max-width="80rem" persistent z-index="999">
             <v-card>
                 <v-card-text>
                     <v-form ref="myForm" @submit.prevent>
@@ -406,15 +406,13 @@ export default {
 }
 
 /* mobile */
-@media (max-width: 640px) {
-   
-}
+@media (max-width: 640px) {}
 
 /* higer width than mobile */
 @media (min-width: 640px) {
-   .list{
-    display: grid;
-    grid-template-columns: 50% 50%;
-   }
+    .list {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
 }
 </style>
