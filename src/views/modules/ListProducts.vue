@@ -25,20 +25,19 @@
                     <v-list-item v-for="(product, index) in PRODUCTS.data" :key="product.id">
                         <v-card variant="tonal">
                             <v-card-text>
-                                <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                                <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
                                     <div style="align-self: end; display: flex; gap: 0.5rem">
                                         <v-icon size="x-large" class="cursor" style="color: red;"
                                             @click="DeleteProduct(product)">mdi-delete</v-icon>
                                         <v-icon size="x-large" class="cursor" color="secondary"
                                             @click="EditProduct(product)">mdi-pencil</v-icon>
                                     </div>
+                                    <p style="align-self: center">{{ product.date_and_time }}</p>
                                     <v-carousel v-if="product.images.length > 0" hide-delimiter-background>
                                         <v-carousel-item v-for="(item, index) in product.images" :key="index"
                                             :src="item.base64img"></v-carousel-item>
                                     </v-carousel>
-                                    <div style="display: flex;  gap: 0.5rem;  align-items: center;">
-                                        <p><strong>{{ product.name }}</strong></p>
-                                    </div>
+                                    <p><strong>{{ product.name }}</strong></p>
                                     <v-chip color="primary">{{ product.category }}</v-chip>
                                     <p>Description: {{ product.description }}</p>
                                 </div>
