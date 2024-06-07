@@ -85,7 +85,7 @@
                     </v-form>
 
                     <div style="display: flex; gap: 0.5rem">
-                        <v-btn @click="() => EditModal = false" elevation="2" color="yellow">
+                        <v-btn @click="() => EditModal = false" elevation="2" color="red">
                             Cancel
                         </v-btn>
                         <v-btn @click="openFileInput" elevation="2" color="green">
@@ -94,8 +94,8 @@
                         <v-btn v-if="pictures.length > 0" @click="openModal" elevation="2" outlined color="warning">
                             <v-icon>mdi-image-multiple</v-icon>View
                         </v-btn>
-                        <v-btn :loading="loadSubmit" elevation="2" @click="submit" color="red">
-                            Submit
+                        <v-btn :loading="loadSubmit" elevation="2" @click="submit" color="yellow">
+                            Update
                         </v-btn>
                     </div>
                 </v-card-text>
@@ -191,10 +191,6 @@ export default {
     computed: {
         ...mapGetters(["PRODUCTS", "", ""]),
         pagination_length() {
-            // console.log(this.total)
-            // console.log(this.perPage)
-            // console.log( Math.ceil(this.total / this.perPage))
-            // return 5
             return Math.ceil(this.total / this.perPage)
         }
     },
@@ -246,8 +242,20 @@ export default {
                     product_id: product.id
                 }
             }
-            this.$store.dispatch('DeleteProduct', payload).then(() => {
-                this.fetchTable()
+            this.$store.dispatch('DeleteProduct', payload).then((response) => {
+                if (response.message === "success") {
+                    this.fetchTable()
+                    this.$swal.fire({
+                        title: "Success!",
+                        text: "Delete product successfully!",
+                        icon: "success",
+                    });
+                } else {
+                    this.$swal.fire({
+                        title: "Error",
+                        icon: "warning",
+                    });
+                }
             })
         },
 
@@ -271,7 +279,6 @@ export default {
                 },
             }
             this.$store.dispatch('GetProducts', payload).then(() => {
-                console.log(this.PRODUCTS.total)
                 this.total = this.PRODUCTS.total
             })
         },
@@ -292,7 +299,6 @@ export default {
                 });
                 this.pictureFile.push(pic);
             }
-            console.log(this.pictureFile)
             this.isCommitCompleted = true;
         },
 
@@ -338,13 +344,13 @@ export default {
                 };
                 this.$store.dispatch("UpdateProduct", payload).then((response) => {
                     this.loadSubmit = false
-                    if (response === "success") {
+                    if (response.message === "success") {
                         this.fetchTable()
                         this.clear()
                         this.EditModal = false
                         this.$swal.fire({
                             title: "Success!",
-                            text: "Form submitted successfully!",
+                            text: "Update product successfully!",
                             icon: "success",
                         });
                         this.$router.push("/SideNav/ListProducts");
@@ -375,7 +381,6 @@ export default {
         },
 
         openModal() {
-            console.log(this.pictures)
             this.showModal = true;
         },
         closeModal() {
